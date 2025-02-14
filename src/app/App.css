@@ -1,0 +1,98 @@
+:root{
+  --cl-main: #fff;
+  --cl-additional: #546076;
+  --cl-success: #78a659;
+  --cl-error: #d2447b;
+  --cl-border: #273246;
+  --cl-bg-main: #1d2637;
+  --cl-bg-additional: #232c3e;
+}
+
+body{
+  background-color: var(--cl-bg-main);
+  background-image: url('./img/app-bg.png');
+  background-position: top center;
+  background-size: cover;
+  color: var(--cl-main);
+  font-family: 'Roboto', 'Open sans', sans-serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+.balance:___On_HoLD: {
+  font-size: 24px;
+  font-family: "SF UI Display";
+  color: rgb(84, 96, 118);
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5;
+  text-align: left;
+  position: absolute;
+  left: 462.125px;
+  top: 214.734px;
+  z-index: 78;
+}
+.trading_capital_1_00865_BTC {
+  font-size: 24px;
+  font-family: "SF UI Display";
+  color: rgb(84, 96, 118);
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 2.917;
+  text-align: left;
+  position: absolute;
+  left: 32.453px;
+  top: 192.73px;
+  z-index: 76;
+}
+._24_04 {
+  font-size: 20px;
+  font-family: "SF UI Display";
+  color: rgb(84, 96, 118);
+  line-height: 4.4;
+  text-align: center;
+  position: absolute;
+  left: 349.89px;
+  top: 613.5px;
+  z-index: 64;
+}
+.place_bot_here {
+  font-size: 20px;
+  font-family: "SF UI Display";
+  color: rgb(84, 96, 118);
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 322.844px;
+  top: 829.453px;
+  z-index: 147;
+}
+
+._32_6_ {
+  font-size: 46px;
+  font-family: "Myriad Pro";
+  color: rgb(120, 166, 89);
+  line-height: 0.87;
+  text-align: center;
+  position: absolute;
+  left: 302.335px;
+  top: 452.99px;
+  z-index: 73;
+}
+.Megabot__3_6_ {
+  font-size: 20px;
+  font-family: "SF UI Display";
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  position: absolute;
+  left: 326.843px;
+  top: 1035.453px;
+  z-index: 126;
+}
