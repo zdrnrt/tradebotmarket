@@ -3,9 +3,11 @@ import classNames from 'classnames';
 import Footer from '../../../shared/footer';
 import Header from '../../../shared/header';
 import Chart from './Chart/Chart';
+import RangeItem from './Range/RangeItem';
 import style from './Home.module.scss';
 
 import jsonData from '../api/data.min.json';
+import ranges from '../config/ranges';
 import Bot from './Bot/Bot';
 
 export default function Home(){
@@ -14,14 +16,27 @@ export default function Home(){
   const [error, setError] = useState(false);
   const [data, setData] = useState({});
   const [activeBot, setActiveBot] = useState(null);
-  const [activePeriod, setActivePeriod] = useState(null)
-
+  
   const changeBot = useCallback( (name) => {
     setActiveBot(name)
   }, [])
+
+  const [activeRange, setActiveRange] = useState(null)
+
+  const changePeriod = useCallback( (id) => setActiveRange(id), [])
+
   useEffect( () => {
-    setActivePeriod(data.bots[0])
+    if (data?.bots?.length > 0){
+      setActiveBot(data.bots[0].name)
+    }
+    return
   }, [data])
+
+  useEffect( () => {
+    setActiveRange(ranges[0].id);
+    return
+  }, [])
+
   useEffect( () => {
 
     // setTimeout(() => {
@@ -57,46 +72,59 @@ export default function Home(){
 */
   }, [])
 
+  
   let botList = [];
-
-  if (!!data.bots){
-    botList = data.bots.map((el) => <Bot key={el.name} name={el.name} clickHandler={changeBot} active={activeBot == el.name} value={3.15}/>)
+  
+  if (data.bots){
+    botList = data.bots.map((el) => {
+      return <Bot key={el.name} name={el.name} clickHandler={changeBot} active={activeBot == el.name} value={el[activeRange]}/>
+    })
   }
+  
+  let rangeList = ranges.map( (el) => 
+    <RangeItem key={el.id} id={el.id} name={el.name} clickHandler={changePeriod} active={activeRange == el.id}  />
+  )
 
-
+  
   return (
     <>
       <Header />
       <main className={classNames(style['home'], {[style['home--loading']]: loading || error }) }>
         { loading && <div className={style['loading']}>Loading...</div> }
         { error && <div className={style['error']}>Error, reload page</div> }
-        <header className={style['header']}>
-          <div className={style['header__title']}>Trading capital</div>
-          <div className={style['header__value']}>
-            <div className={style['header__capital']}>
-              { (data.trading_capital && data.trading_capital_currency) ? `${data.trading_capital} ${data.trading_capital_currency}` : '—'}
-            </div>
-            <div className={classNames(style['header__wallet'], style['wallet'])}>
-              <div className={style['wallet__item']}>
-                <span className={style['wallet__title']}>Balance:</span>
-                <span className={style['wallet__value']}>{!!data.balance ? data['balance'] : '—'}</span>
-                <img src='/img/home/value-icon.png'/>
+        <div className='content'>
+          <header className={style['header']}>
+            <div className={style['header__title']}>Trading capital</div>
+            <div className={style['header__value']}>
+              <div className={style['header__capital']}>
+                { (data.trading_capital && data.trading_capital_currency) ? `${data.trading_capital} ${data.trading_capital_currency}` : '—'}
               </div>
-              <div className={style['wallet__item']}>
-                <span className={style['wallet__title']}>On hold:</span>
-                <span className={style['wallet__value']}>{!!data.on_hold ? data.on_hold : '—'}</span>
-                <img src='/img/home/value-icon.png'/>
+              <div className={classNames(style['header__wallet'], style['wallet'])}>
+                <div className={style['wallet__item']}>
+                  <span className={style['wallet__title']}>Balance:</span>
+                  <span className={style['wallet__value']}>{!!data.balance ? data['balance'] : '—'}</span>
+                  <img src='/img/home/value-icon.png'/>
+                </div>
+                <div className={style['wallet__item']}>
+                  <span className={style['wallet__title']}>On hold:</span>
+                  <span className={style['wallet__value']}>{!!data.on_hold ? data.on_hold : '—'}</span>
+                  <img src='/img/home/value-icon.png'/>
+                </div>
               </div>
             </div>
+          </header>
+          <div className={style['chart']}>
+            <Chart/>
           </div>
-        </header>
-        <div className={style['chart']}>
-          <Chart />
+          <div className={style['bot-list']}>
+            {botList}
+          </div>
+          {/* home - {activeBot} - {activeRange} */}
+          <div className={style['range']}>
+            <div className={style['range__title']}>Time Range: </div>
+            {rangeList}
+          </div>
         </div>
-        <div className={style['bot-list']}>
-          {botList}
-        </div>
-        home - {activeBot}
       </main>
       <Footer />
     </>

@@ -1,0 +1,21 @@
+.range{
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 22px;
+  color: var(--cl-main);
+  border: 1px solid var(--cl-border);
+  border-radius: 40px;
+  background: transparent;
+  cursor: pointer;
+  &:hover{
+    border-color: rgba($color: var(--cl-additional), $alpha: 0.5);
+  }
+  &:active{
+    opacity: 0.7;
+  }
+  &--active{
+    border-color: rgba($color: var(--cl-additional), $alpha: 0.5);
+    color: var(--cl-additional);
+    font-weight: 500;
+  }
+}

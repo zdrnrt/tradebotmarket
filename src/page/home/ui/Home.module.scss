@@ -1,9 +1,7 @@
 .home{
   position: relative;
   &--loading{
-    .header,
-    .chart,
-    .bot-list{
+    .content{
       pointer-events: none;
       opacity: 0.3;
     }
@@ -104,4 +102,17 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2px;
+}
+.range{
+  padding: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 20px;
+  row-gap: 10px;
+  &__title{
+    font-size: 24px;
+    font-weight: 500;
+  }
 }
