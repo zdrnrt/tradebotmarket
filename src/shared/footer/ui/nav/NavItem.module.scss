@@ -1,0 +1,40 @@
+.item{
+  position: relative;
+  display: block;
+  padding: 15px 0 13px;
+  text-align: center;
+  color: var(--cl-additional);
+  text-decoration: none;
+  font-size: 10px;
+  &--active{
+    color: var(--cl-main);
+  }
+  &__preview{
+    position: relative;
+    display: block;;
+  }
+  &__notification{
+    position: absolute;
+    top: -20px;
+    width: 35px;
+    height: 35px;
+    right: -12px;
+    color: var(--cl-main);
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 35px;
+    background-color: var(--cl-bg-notification);
+    border-radius: 50%;
+  }
+  &__icon{
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+  }
+  &__title{
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+  }
+}
