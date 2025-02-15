@@ -3,11 +3,11 @@
   display: block;
   padding: 15px 0 13px;
   text-align: center;
-  color: var(--cl-additional);
+  color: var(--cl-main);
   text-decoration: none;
   font-size: 10px;
   &--active{
-    color: var(--cl-main);
+    color: var(--cl-additional);
   }
   &__preview{
     position: relative;
@@ -19,7 +19,7 @@
     width: 35px;
     height: 35px;
     right: -12px;
-    color: var(--cl-main);
+    color: var(--cl-additional);
     font-weight: 500;
     font-size: 25px;
     line-height: 35px;

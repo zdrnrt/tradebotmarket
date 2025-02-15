@@ -1,6 +1,6 @@
 :root{
-  --cl-main: #fff;
-  --cl-additional: #546076;
+  --cl-main: #546076;
+  --cl-additional: #fff;
   --cl-success: #78a659;
   --cl-error: #d2447b;
   --cl-border: #273246;
@@ -14,6 +14,7 @@ body{
   background-image: url('./img/app-bg.png');
   background-position: top center;
   background-size: cover;
+  background-repeat: no-repeat;
   color: var(--cl-main);
   font-family: 'Roboto', 'Open sans', sans-serif;
 }

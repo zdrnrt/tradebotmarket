@@ -4,7 +4,7 @@ import style from './Footer.module.scss';
 
 export default function Footer(){
   const currentPage = '/'
-  let navList = nav.map( (el) => { console.log(currentPage, el.link, currentPage == el.link); return <NavItem key={el.id} link={el.link} icon={el.icon} title={el.title} current={currentPage == el.link} notification={el.notification} />})
+  let navList = nav.map( (el) => <NavItem key={el.id} link={el.link} icon={el.icon} title={el.title} current={currentPage == el.link} notification={el.notification} />)
 
   return (
     <footer className={style['footer']}>

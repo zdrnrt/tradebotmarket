@@ -1,10 +1,9 @@
 import style from './NavItem.module.scss'
 
 export default function NavItem({link, icon, title, current, notification}){
-  const currentLink = style['item'] + (current ? ' ' + style['item--active'] : '')
-  console.log('menuitem', link, icon, title, current, currentLink)
+  const className = style['item'] + (current ? ' ' + style['item--active'] : '')
   return(
-    <a href={link} className={currentLink}>
+    <a href={link} className={className}>
       <span className={style['item__preview']}>
         {!!notification && <span className={style['item__notification']}>{notification}</span>}
         <img src={icon} alt={title} />
