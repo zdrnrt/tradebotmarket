@@ -5,15 +5,22 @@
   bottom: 0;
   z-index: 10;
   width: 100%;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 10px;
+  padding-left: 10px;
   background-color: var(--cl-bg-additional);
+  @media screen and (min-width: 768px) {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
   &__nav{
-    max-width: 690px;
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;
     justify-content: space-between;
+    @media screen and (min-width: 768px) {
+      max-width: 690px;
+      margin: 0 auto;
+    }
   }
   a{
     // flex: 0 1 20%;
