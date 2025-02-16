@@ -38,17 +38,13 @@ export default function Home(){
   }, [])
 
   useEffect( () => {
-
+    // пример асинхронности
     setTimeout(() => {
       setData(jsonData);
       setLoading(false);
-      // setError(true);
-
     }, 2000);
-    // setLoading(false);
 /*
-    fetch('http://127.0.0.1:8080/src/page/home/api/data.min.json/')
-    // fetch('/src/page/home/api/data.min.json/')
+    fetch('API_URL')
       .then( (response) => {
         if (!response.ok){
           throw new Error(response.statusText)
@@ -56,7 +52,6 @@ export default function Home(){
         return response.json()
       })
       .then( (data) => {
-        console.log(data);
         setTimeout(() => {
           setData(jsonData);
           setLoading(false);
