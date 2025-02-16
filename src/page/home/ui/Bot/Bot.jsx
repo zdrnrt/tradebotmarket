@@ -8,7 +8,7 @@ export default function Bot({name, clickHandler, active, value}){
         <img src={`/img/home/bot/${name}.png`} alt={name} className={style['bot__icon']} />
       </span>
       <span className={style['bot__name']}>{name}</span>
-      <span className={classNames(style['bot__value'], {[style['bot__value--green']]: value >= 0}, {[style['bot__value--red']]: value < 0})}>{value}</span>
+      <span className={classNames(style['bot__value'], {[style['bot__value--green']]: value >= 0}, {[style['bot__value--red']]: value < 0})}>{value > 0 ? '+' : ''}{value}</span>
     </button>
   )
 }

@@ -18,7 +18,7 @@ export default function Home(){
   const [activeBot, setActiveBot] = useState(null);
   
   const changeBot = useCallback( (name) => {
-    setActiveBot(name)
+    setActiveBot(name);
   }, [])
 
   const [activeRange, setActiveRange] = useState(null)
@@ -39,12 +39,12 @@ export default function Home(){
 
   useEffect( () => {
 
-    // setTimeout(() => {
+    setTimeout(() => {
       setData(jsonData);
       setLoading(false);
       // setError(true);
 
-    // }, 2000);
+    }, 2000);
     // setLoading(false);
 /*
     fetch('http://127.0.0.1:8080/src/page/home/api/data.min.json/')
@@ -74,16 +74,21 @@ export default function Home(){
 
   
   let botList = [];
+  let chartValue = null;
   
-  if (data.bots){
+  if (data?.bots?.length > 0){
     botList = data.bots.map((el) => {
-      return <Bot key={el.name} name={el.name} clickHandler={changeBot} active={activeBot == el.name} value={el[activeRange]}/>
+      return <Bot key={el.name} name={el.name} clickHandler={changeBot} active={activeBot === el.name} value={el[activeRange]}/>
     })
+    if (data.bots.find( (el) => el.name === activeBot)){
+      chartValue = data.bots.find( (el) => el.name == activeBot)[activeRange]
+    }
   }
   
   let rangeList = ranges.map( (el) => 
     <RangeItem key={el.id} id={el.id} name={el.name} clickHandler={changePeriod} active={activeRange == el.id}  />
   )
+
 
   
   return (
@@ -92,7 +97,7 @@ export default function Home(){
       <main className={classNames(style['home'], {[style['home--loading']]: loading || error }) }>
         { loading && <div className={style['loading']}>Loading...</div> }
         { error && <div className={style['error']}>Error, reload page</div> }
-        <div className='content'>
+        <div className={style['content']}>
           <header className={style['header']}>
             <div className={style['header__title']}>Trading capital</div>
             <div className={style['header__value']}>
@@ -102,19 +107,19 @@ export default function Home(){
               <div className={classNames(style['header__wallet'], style['wallet'])}>
                 <div className={style['wallet__item']}>
                   <span className={style['wallet__title']}>Balance:</span>
-                  <span className={style['wallet__value']}>{!!data.balance ? data['balance'] : '—'}</span>
+                  <span className={style['wallet__value']}>{data.balance ? data['balance'] : '—'}</span>
                   <img src='/img/home/value-icon.png'/>
                 </div>
                 <div className={style['wallet__item']}>
                   <span className={style['wallet__title']}>On hold:</span>
-                  <span className={style['wallet__value']}>{!!data.on_hold ? data.on_hold : '—'}</span>
+                  <span className={style['wallet__value']}>{data.on_hold ? data.on_hold : '—'}</span>
                   <img src='/img/home/value-icon.png'/>
                 </div>
               </div>
             </div>
           </header>
           <div className={style['chart']}>
-            <Chart/>
+            <Chart value={chartValue}/>
           </div>
           <div className={style['bot-list']}>
             {botList}
