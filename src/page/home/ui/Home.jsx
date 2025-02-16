@@ -108,12 +108,12 @@ export default function Home(){
                 <div className={style['wallet__item']}>
                   <span className={style['wallet__title']}>Balance:</span>
                   <span className={style['wallet__value']}>{data.balance ? data['balance'] : '—'}</span>
-                  <img src='/img/home/value-icon.png'/>
+                  <img src='/img/home/value-icon.png' alt='Balance' className={style['wallet__icon']}/>
                 </div>
                 <div className={style['wallet__item']}>
                   <span className={style['wallet__title']}>On hold:</span>
                   <span className={style['wallet__value']}>{data.on_hold ? data.on_hold : '—'}</span>
-                  <img src='/img/home/value-icon.png'/>
+                  <img src='/img/home/value-icon.png' alt='On hold' className={style['wallet__icon']}/>
                 </div>
               </div>
             </div>

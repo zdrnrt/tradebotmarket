@@ -1,6 +1,9 @@
 .chart{
   position: relative;
-  padding-top: 40px;
+  padding-top: 20px;
+  @media screen and (min-width: 768px) {
+    padding-top: 40px;
+  }
   &__item{
     display: block;
     width: 100%;
@@ -11,7 +14,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 45px;
+    font-size: 24px;
+    @media screen and (min-width: 768px) {
+      font-size: 45px;
+    }
     &--green{
       color: var(--cl-success);
     }

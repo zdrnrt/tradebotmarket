@@ -1,12 +1,16 @@
 .range{
   flex-grow: 1;
-  padding: 8px;
-  font-size: 22px;
+  padding: 4px;
+  font-size: 12px;
   color: var(--cl-main);
   border: 1px solid var(--cl-border);
   border-radius: 40px;
   background: transparent;
   cursor: pointer;
+  @media screen and (min-width: 768px) {
+    padding: 8px;
+    font-size: 22px;
+  }
   &:hover{
     border-color: rgba($color: var(--cl-additional), $alpha: 0.5);
   }

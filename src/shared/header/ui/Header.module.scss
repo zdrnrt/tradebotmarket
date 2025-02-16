@@ -1,4 +1,6 @@
 .header{
+  margin: 0 auto;
+  max-width: 750px;
   padding: 24px 10px 0px;
   display: flex;
   flex-flow: row nowrap;
@@ -7,6 +9,8 @@
   @media screen and (min-width: 768px) {
     padding: 55px 30px 30px;
     margin: 0 auto;
+    border-left: 1px solid var(--cl-border);
+    border-right: 1px solid var(--cl-border);
   }
   &__control{
     padding: 5px;
