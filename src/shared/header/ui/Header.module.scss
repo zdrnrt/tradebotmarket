@@ -1,22 +1,32 @@
 .header{
-  padding: 55px 30px 30px;
+  padding: 24px 10px 0px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    padding: 55px 30px 30px;
+  }
   &__control{
     padding: 5px;
     border: none;
     background-color: transparent;
     cursor: pointer;
     img{
-      width: 35px;
-      height: 35px;
+      width: 18px;
+      height: 18px;
       object-fit: contain;
+      @media screen and (min-width: 768px) {
+        width: 35px;
+        height: 35px;
+      }
     }
   }
   &__title{
     font-weight: 500;
-    font-size: 35px;
+    font-size: 18px;
+    @media screen and (min-width: 768px) {
+      font-size: 35px;
+    }
   }
 }
