@@ -15,34 +15,32 @@ export default function Home(){
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState({});
+
   const [activeBot, setActiveBot] = useState(null);
-  
-  const changeBot = useCallback( (name) => {
-    setActiveBot(name);
-  }, [])
-
+  const changeBot = useCallback( (name) => setActiveBot(name), [])
   const [activeRange, setActiveRange] = useState(null)
-
   const changePeriod = useCallback( (id) => setActiveRange(id), [])
 
   useEffect( () => {
-    if (data?.bots?.length > 0){
-      setActiveBot(data.bots[0].name)
-    }
-    return
-  }, [data])
-
-  useEffect( () => {
+    // включение дефолтного первого периода
     setActiveRange(ranges[0].id);
-    return
-  }, [])
 
-  useEffect( () => {
+    // проверка на данные в localStorage
+    if (localStorage.getItem('botData') && JSON.parse(localStorage.getItem('botData'))){
+      const localData = JSON.parse(localStorage.getItem('botData'));
+      if ( Date.now() < ( new Date(Number(localData.time) + 3600000) ) ){
+        setData(localData);
+        setLoading(false);
+        return 
+      }
+    }
+
     // пример асинхронности
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setData(jsonData);
       setLoading(false);
     }, 2000);
+    return () => clearTimeout(timer)
 /*
     fetch('API_URL')
       .then( (response) => {
@@ -52,10 +50,7 @@ export default function Home(){
         return response.json()
       })
       .then( (data) => {
-        setTimeout(() => {
-          setData(jsonData);
-          setLoading(false);
-        }, 2000);
+        setData(data);
       })
       .catch( (error) => {
         console.log(error);
@@ -66,7 +61,20 @@ export default function Home(){
       })
 */
   }, [])
-
+  
+  useEffect(() => {
+    // првоерка данных на пустоту
+    if (Object.keys(data).length > 0){
+      // проверка и включение дефолтного первого бота
+      if (data?.bots?.length > 0){
+        setActiveBot(data.bots[0].name)
+      }
+      // сохранение данных в localStorage и добавление ключа для обновления
+      data.time = Date.now();
+      localStorage.setItem('botData', JSON.stringify(data));
+    }
+    return
+  }, [data]);
   
   let botList = [];
   let chartValue = null;
@@ -119,7 +127,6 @@ export default function Home(){
           <div className={style['bot-list']}>
             {botList}
           </div>
-          {/* home - {activeBot} - {activeRange} */}
           <div className={style['range']}>
             <div className={style['range__title']}>Time Range: </div>
             {rangeList}
